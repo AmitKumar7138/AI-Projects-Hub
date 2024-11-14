@@ -1,0 +1,30 @@
+2024-11-14 13:46:40,053 - INFO - Establishing database connection
+2024-11-14 13:46:40,154 - INFO - Database connection successful!
+2024-11-14 13:46:40,163 - INFO - Data read from CSV 'Titanic-Dataset.csv'
+2024-11-14 13:46:40,179 - INFO - Table 'TitanicData' already exists.
+2024-11-14 13:46:40,312 - INFO - Data fetched from table 'TitanicData'
+2024-11-14 13:46:40,541 - INFO - Uploaded TitanicData.csv to S3 bucket eltdatascienceawsrdsbucket in folder original_data.
+2024-11-14 13:46:40,637 - INFO - Uploaded TitanicData_DropNa.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:46:40,742 - INFO - Table 'TitanicData_GroupBy' created successfully!
+2024-11-14 13:46:40,830 - INFO - Data inserted into table 'TitanicData_GroupBy' successfully!
+2024-11-14 13:46:40,877 - INFO - Uploaded TitanicData_GroupBy.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:46:40,950 - INFO - Table 'TitanicData_Pivot' created successfully!
+2024-11-14 13:46:41,002 - INFO - Data inserted into table 'TitanicData_Pivot' successfully!
+2024-11-14 13:46:41,044 - INFO - Uploaded TitanicData_Pivot.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:46:41,113 - INFO - Table 'TitanicData_Melt' created successfully!
+2024-11-14 13:47:33,545 - INFO - Data inserted into table 'TitanicData_Melt' successfully!
+2024-11-14 13:47:33,759 - INFO - Uploaded TitanicData_Melt.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:47:33,820 - INFO - Table 'TitanicData_Stack' created successfully!
+2024-11-14 13:48:18,407 - INFO - Data inserted into table 'TitanicData_Stack' successfully!
+2024-11-14 13:48:18,933 - INFO - Uploaded TitanicData_Stack.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:48:19,020 - INFO - Table 'TitanicData_Merge' created successfully!
+2024-11-14 13:48:29,565 - INFO - Data inserted into table 'TitanicData_Merge' successfully!
+2024-11-14 13:48:29,720 - INFO - Uploaded TitanicData_Merge.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:48:29,782 - INFO - Table 'TitanicData_Concat' created successfully!
+2024-11-14 13:48:39,250 - INFO - Data inserted into table 'TitanicData_Concat' successfully!
+2024-11-14 13:48:39,440 - INFO - Uploaded TitanicData_Concat.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:48:39,508 - INFO - Table 'TitanicData_Union' created successfully!
+2024-11-14 13:48:49,540 - ERROR - Error inserting data: nan can not be used with MySQL
+2024-11-14 13:48:49,757 - INFO - Uploaded TitanicData_Union.csv to S3 bucket eltdatascienceawsrdsbucket in folder processed_data.
+2024-11-14 13:48:49,758 - INFO - Database connection closed.
+2024-11-14 13:48:49,951 - INFO - Uploaded code_backup.zip to s3://eltdatascienceawsrdsbucket/code_backup/code_backup.zip
