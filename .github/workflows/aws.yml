@@ -1,0 +1,74 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment (optional, for testing locally)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # Step 3: Deploy and Run Django Server on EC2
+      - name: Deploy and Run Django Server on EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_KEY: ${{ secrets.EC2_KEY }}
+        run: |
+          # Create a temporary SSH key file
+          echo "${EC2_KEY}" > private_key.pem
+          chmod 600 private_key.pem
+
+          # Connect to EC2 and execute commands
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${EC2_USER}@${EC2_HOST} << 'EOF'
+
+          # Update and install dependencies
+          sudo yum update -y
+          sudo yum install -y git python3 python3-pip
+
+          # Navigate to the project directory
+          cd ec2-test
+
+          # Kill any running Django server processes
+          sudo pkill -f "manage.py runserver" || true
+
+          # Clone or pull repository
+          if [ -d "AI-Projects-Hub" ]; then
+            cd AI-Projects-Hub/EC2_django_demo
+            git reset --hard
+            git pull origin main
+          else
+            git clone https://github.com/AmitKumar7138/AI-Projects-Hub.git
+            cd AI-Projects-Hub/EC2_django_demo
+          fi
+
+          # Set up virtual environment and install dependencies
+          if [ -d "venv" ]; then
+            source venv/bin/activate
+          else
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install django gunicorn
+          fi
+
+          # Start the Django server
+          # nohup gunicorn --bind 0.0.0.0:8000 helloworld.wsgi:application &
+          nohup python manage.py runserver 0.0.0.0:8000 &
+
+          EOF
+
+          # Clean up local SSH key
+          rm -f private_key.pem
